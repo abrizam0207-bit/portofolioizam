@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Abrizam Laiz | Digital Wall Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome & Lucide Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;700;800&family=Permanent+Marker&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wall: '#0d0e12',
+                        wallLight: '#16181e',
+                        offwhite: '#f4f0ea',
+                        electricBlue: '#0055ff',
+                        neonGreen: '#00ff66',
+                        violet: '#8a2be2',
+                        accentOrange: '#ff5500',
+                    },
+                    fontFamily: {
+                        anton: ['Anton', 'sans-serif'],
+                        syne: ['Syne', 'sans-serif'],
+                        marker: ['"Permanent Marker"', 'cursive'],
+                        hand: ['Caveat', 'cursive'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neon-green': '0 0 15px rgba(0,255,102,0.6)',
+                        'neon-blue': '0 0 15px rgba(0,85,255,0.6)',
+                        'neon-orange': '0 0 15px rgba(255,85,0,0.6)',
+                        'sticker': '4px 4px 0px #000',
+                        'sticker-lg': '8px 8px 0px #000',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Concrete Grain Background */
+        body {
+            background-color: #0d0e12;
+            color: #f4f0ea;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, #0d0e12 1px);
+            background-size: 24px 24px, 48px 48px;
+            background-position: 0 0, 24px 24px;
+            overflow-x: hidden;
+        }
+
+        /* Halftone Pattern Effect */
+        .halftone-bg {
+            background-image: radial-gradient(#000 20%, transparent 20%);
+            background-size: 8px 8px;
+        }
+
+        /* Masking Tape Overlay Effect */
+        .masking-tape {
+            background: rgba(240, 230, 200, 0.85);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            backdrop-filter: blur(1px);
+            clip-path: polygon(2% 0%, 98% 3%, 100% 95%, 96% 100%, 0% 92%);
+        }
+        
+        .masking-tape-dark {
+            background: rgba(30, 30, 35, 0.9);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            clip-path: polygon(0% 5%, 95% 0%, 100% 90%, 92% 100%, 3% 95%);
+        }
+
+        /* Torn Paper Edge */
+        .torn-paper {
+            clip-path: polygon(
+                0% 0%, 100% 0%, 100% 94%, 
+                95% 97%, 90% 93%, 85% 98%, 
+                80% 94%, 75% 99%, 70% 93%, 
+                65% 98%, 60% 94%, 55% 99%, 
+                50% 93%, 45% 98%, 40% 94%, 
+                35% 99%, 30% 93%, 25% 98%, 
+                20% 94%, 15% 98%, 10% 93%, 
+                5% 97%, 0% 93%
+            );
+        }
+
+        /* Sticker Effect */
+        .sticker-btn {
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sticker-btn:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+        .sticker-btn:active {
+            transform: scale(0.95) translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000 !important;
+        }
+
+        /* Text Glitch Effect */
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff5500;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #0055ff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(12px, 9999px, 44px, 0); }
+            20% { clip: rect(60px, 9999px, 80px, 0); }
+            40% { clip: rect(20px, 9999px, 90px, 0); }
+            60% { clip: rect(80px, 9999px, 10px, 0); }
+            80% { clip: rect(35px, 9999px, 50px, 0); }
+            100% { clip: rect(10px, 9999px, 70px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(80px, 9999px, 10px, 0); }
+            20% { clip: rect(30px, 9999px, 50px, 0); }
+            40% { clip: rect(70px, 9999px, 20px, 0); }
+            60% { clip: rect(15px, 9999px, 90px, 0); }
+            80% { clip: rect(55px, 9999px, 30px, 0); }
+            100% { clip: rect(40px, 9999px, 85px, 0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0e12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff5500;
+            border-radius: 4px;
+            border: 2px solid #0d0e12;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff66;
+        }
+
+        /* Canvas Overlay for Spray Mode */
+        #sprayCanvas {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 45;
+        }
+        #sprayCanvas.active {
+            pointer-events: auto;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body class="font-syne antialiased selection:bg-neonGreen selection:text-black">
+
+    <!-- Dynamic Spray Paint Overlay Canvas -->
+    <canvas id="sprayCanvas"></canvas>
+
+    <!-- FLOATING STICKER NAVBAR -->
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl">
+        <div class="bg-wallLight/90 backdrop-blur-md border-2 border-offwhite/20 rounded-2xl p-2 px-4 md:px-6 shadow-sticker flex items-center justify-between transition-all duration-300">
+            
+            <!-- Logo Tag -->
+            <a href="#hero" class="group flex items-center gap-2">
+                <div class="bg-neonGreen text-black font-anton px-3 py-1 rounded border-2 border-black -rotate-3 group-hover:rotate-0 transition-transform shadow-sticker">
+                    AL_
+                </div>
+                <span class="font-marker text-xs text-accentOrange hidden sm:inline-block rotate-2">TKJ_LAB</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-1 lg:gap-2 font-mono text-xs font-bold">
+                <a href="#about" class="px-3 py-1.5 rounded-lg hover:bg-electricBlue hover:text-white transition-colors">/ABOUT</a>
+                <a href="#skills" class="px-3 py-1.5 rounded-lg hover:bg-neonGreen hover:text-black transition-colors">/WEAPONS</a>
+                <a href="#projects" class="px-3 py-1.5 rounded-lg hover:bg-accentOrange hover:text-white transition-colors">/BUILT</a>
+                <a href="#tkj" class="px-3 py-1.5 rounded-lg hover:bg-violet hover:text-white transition-colors">/TKJ_NET</a>
+                <a href="#journey" class="px-3 py-1.5 rounded-lg hover:bg-neonGreen hover:text-black transition-colors">/GRIND</a>
+                <a href="#contact" class="px-3 py-1.5 rounded-lg hover:bg-electricBlue hover:text-white transition-colors">/CONNECT</a>
+            </div>
+
+            <!-- Action Controls (Spray Can Toggle & Mobile Menu) -->
+            <div class="flex items-center gap-2">
+                <button id="sprayToggleBtn" onclick="toggleSprayMode()" title="Toggle Spray Graffiti Mode" 
+                        class="bg-accentOrange text-black px-3 py-1.5 rounded-xl font-mono font-bold text-xs border-2 border-black shadow-sticker hover:bg-neonGreen transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-spray-can"></i>
+                    <span id="sprayBtnText" class="hidden sm:inline">SPRAY GRAFFITI</span>
+                </button>
+
+                <!-- Mobile Hamburger Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden bg-offwhite text-black p-2 rounded-lg border-2 border-black">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden mt-2 bg-wall border-2 border-neonGreen rounded-xl p-4 shadow-sticker font-mono text-sm space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block p-2 hover:bg-electricBlue rounded">/ABOUT</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block p-2 hover:bg-neonGreen hover:text-black rounded">/WEAPONS</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block p-2 hover:bg-accentOrange rounded">/BUILT</a>
+            <a href="#tkj" onclick="toggleMobileMenu()" class="block p-2 hover:bg-violet rounded">/TKJ_NET</a>
+            <a href="#journey" onclick="toggleMobileMenu()" class="block p-2 hover:bg-neonGreen hover:text-black rounded">/GRIND</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block p-2 hover:bg-electricBlue rounded">/CONNECT</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION - "WELCOME TO MY DIGITAL WALL" -->
+    <section id="hero" class="relative min-h-screen pt-28 pb-16 px-4 md:px-8 flex flex-col justify-center items-center overflow-hidden border-b-4 border-dashed border-offwhite/10">
+        
+        <!-- Background Parallax Scribbles Layer 01 -->
+        <div class="absolute inset-0 pointer-events-none opacity-20 flex justify-between items-center px-10">
+            <span class="font-marker text-8xl text-neonGreen rotate-12 select-none">CODE</span>
+            <span class="font-marker text-9xl text-electricBlue -rotate-45 select-none">127.0.0.1</span>
+            <span class="font-marker text-8xl text-accentOrange rotate-45 select-none">PING</span>
+        </div>
+
+        <!-- Floating Graffiti Badges & Tags Layer 02 -->
+        <div class="absolute top-36 left-6 md:left-20 rotate-[-12deg] z-10 hidden sm:block">
+            <span class="bg-neonGreen text-black font-mono font-bold text-xs px-3 py-1 rounded border-2 border-black shadow-sticker">
+                &lt;CODE/&gt;
+            </span>
+        </div>
+        <div class="absolute top-48 right-8 md:right-24 rotate-[15deg] z-10 hidden sm:block">
+            <span class="bg-violet text-white font-mono font-bold text-xs px-3 py-1 rounded border-2 border-black shadow-sticker">
+                TCP/IP_V6
+            </span>
+        </div>
+        <div class="absolute bottom-20 left-10 rotate-[8deg] z-10 hidden sm:block">
+            <span class="bg-accentOrange text-black font-marker text-sm px-3 py-1 rounded border-2 border-black shadow-sticker">
+                CTRL + S TO SURVIVE
+            </span>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-20">
+            
+            <!-- Hero Left: Giant Experimental Typography -->
+            <div class="lg:col-span-7 text-left space-y-4">
+                
+                <div class="inline-block bg-offwhite text-black font-mono font-bold text-xs px-3 py-1 rounded border-2 border-black shadow-sticker -rotate-1 mb-2">
+                    ⚡ TKJ STUDENT / WEB DEVELOPER / TECH ENTHUSIAST
+                </div>
+
+                <!-- Giant Typography Name -->
+                <div class="font-anton leading-none tracking-tight uppercase select-none space-y-0">
+                    <h1 class="text-6xl sm:text-8xl md:text-9xl text-offwhite drop-shadow-[4px_4px_0_#ff5500] hover:text-neonGreen transition-colors">
+                        MOHAMMAD
+                    </h1>
+                    <h1 class="text-6xl sm:text-8xl md:text-9xl text-electricBlue glitch-text drop-shadow-[4px_4px_0_#000]" data-text="ABRIZAM">
+                        ABRIZAM
+                    </h1>
+                    <h1 class="text-6xl sm:text-8xl md:text-9xl text-offwhite drop-shadow-[4px_4px_0_#8a2be2] hover:text-accentOrange transition-colors">
+                        LAIZ
+                    </h1>
+                </div>
+
+                <!-- Graffiti Small Tags Banner -->
+                <div class="pt-4 flex flex-wrap gap-2 items-center font-marker text-base sm:text-lg text-neonGreen">
+                    <span>CODE</span> •
+                    <span class="text-accentOrange">NETWORK</span> •
+                    <span class="text-electricBlue">CREATE</span> •
+                    <span class="text-violet">LEARN</span> •
+                    <span class="text-offwhite">REPEAT</span>
+                </div>
+
+                <p class="font-mono text-sm text-offwhite/70 max-w-lg pt-2 leading-relaxed">
+                    Hello, I’m Mohammad Abrizam Laiz, a TKJ student at SMK Al-Hadiid. I’m interested in computers, networking, and technology.
+                . Welcome to my digital portfoliio.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="pt-4 flex flex-wrap gap-4">
+                    <a href="#projects" class="sticker-btn bg-neonGreen text-black font-bold font-mono px-6 py-3 rounded-xl border-2 border-black shadow-sticker-lg flex items-center gap-2">
+                        <span>VIEW STUFF I BUILT</span>
+                        <i class="fa-solid fa-arrow-down-long"></i>
+                    </a>
+                    <a href="#contact" class="sticker-btn bg-wallLight text-offwhite font-bold font-mono px-6 py-3 rounded-xl border-2 border-offwhite/40 shadow-sticker flex items-center gap-2 hover:bg-electricBlue hover:text-white">
+                        <span>LETS CONNECT</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Right: Street Poster Cutout Profile -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                
+                <!-- Poster Container -->
+                <div class="relative w-72 sm:w-80 md:w-88 rotate-2 hover:rotate-0 transition-transform duration-500 group">
+                    
+                    <!-- Masking Tape Accents -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-28 h-8 masking-tape z-30 -rotate-2"></div>
+                    <div class="absolute -bottom-4 right-4 w-24 h-8 masking-tape z-30 rotate-6"></div>
+
+                    <!-- Torn Paper Frame -->
+                    <div class="bg-offwhite p-3 rounded-sm shadow-2xl border-2 border-black relative halftone-bg overflow-hidden">
+                        
+                        <!-- Image Container with Halftone Cutout Effect -->
+                        <div class="relative bg-wall border-2 border-black overflow-hidden group">
+                            
+                            <!-- Male Profile Image cutout with Street Art Aesthetic -->
+                            <img src="./jams.jpeg" 
+                                 alt="Mohammad Abrizam Laiz - Male TKJ Student" 
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80';"
+                                 class="w-full h-96 object-cover object-top grayscale contrast-125 group-hover:scale-105 transition-transform duration-500 mix-blend-luminosity">
+
+                            <!-- Neon Silhouette Overlay -->
+                            <div class="absolute inset-0 border-4 border-neonGreen/80 pointer-events-none rounded opacity-75 group-hover:border-accentOrange transition-colors"></div>
+
+                            <!-- Doodle Overlay Scribbles -->
+                            <div class="absolute inset-0 pointer-events-none p-4 flex flex-col justify-between">
+                                <span class="font-marker text-neonGreen text-xl self-end">ABRIZAM_</span>
+                                <div class="flex justify-between items-end">
+                                    <span class="font-mono text-[10px] bg-black/80 text-neonGreen px-1.5 py-0.5 border border-neonGreen">
+                                        TKJ::SYS_01
+                                    </span>
+                                    <i class="fa-solid fa-bolt text-accentOrange text-2xl animate-pulse"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Poster Sticker Badges -->
+                        <div class="mt-3 flex justify-between items-center font-mono text-xs text-black font-bold">
+                            <span class="bg-accentOrange text-white px-2 py-0.5 rounded -rotate-2 border border-black">
+                                VERIFIED TKJ
+                            </span>
+                            <span class="font-hand text-lg text-black">#GenZDeveloper</span>
+                        </div>
+                    </div>
+
+                    <!-- Hand Drawn Sticker Arrow pointing to photo -->
+                    <div class="absolute -left-12 bottom-12 font-hand text-2xl text-neonGreen -rotate-12 hidden sm:flex items-center gap-1 pointer-events-none">
+                        <span>THIS IS ME!</span>
+                        <i class="fa-solid fa-arrow-right text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION - "WHO'S THIS GUY?" -->
+    <section id="about" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative">
+        
+        <!-- Section Header -->
+        <div class="mb-16 relative inline-block">
+            <span class="font-marker text-xs sm:text-sm text-accentOrange tracking-widest block mb-1">// SCRAPBOOK IDENTITY</span>
+            <h2 class="text-5xl sm:text-7xl font-anton text-offwhite uppercase tracking-tight">
+                WHO'S THIS <span class="text-neonGreen underline decoration-accentOrange decoration-wavy">GUY?</span>
+            </h2>
+            <div class="absolute -right-8 -top-4 font-marker text-violet text-sm rotate-12 hidden sm:block">
+                [TKJ STUDENT FILE]
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Polaroid Study Image Container -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="bg-offwhite p-4 pt-6 pb-12 rounded shadow-2xl border-2 border-black max-w-sm w-full rotate-[-3deg] hover:rotate-0 transition-all duration-300 relative group">
+                    
+                    <!-- Translucent Duct Tape Top Center -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 masking-tape z-20"></div>
+
+                    <!-- Male Polaroid Workspace/Student Image -->
+                    <div class="relative bg-wall border-2 border-black overflow-hidden h-72">
+                        <img src="./ini.png" 
+                             alt="TKJ Male Student Workspace" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80';"
+                             class="w-full h-full object-cover object-top grayscale contrast-125 group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-2 left-2 font-mono text-[11px] text-neonGreen">
+                            LOCATION: TKJ COMPUTER LAB
+                        </span>
+                    </div>
+
+                    <!-- Polaroid Handwriting Caption -->
+                    <div class="mt-4 text-center">
+                        <p class="font-marker text-black text-lg">"Tinkering with routers & code daily"</p>
+                        <span class="font-mono text-xs text-gray-600 block mt-1">OCT 2026 LOG RECORD</span>
+                    </div>
+
+                    <!-- Doodle Sticker -->
+                    <div class="absolute -bottom-5 -right-5 bg-electricBlue text-white font-mono font-bold text-xs p-3 rounded-full border-2 border-black shadow-sticker rotate-12">
+                        100% HARDWARE + WEB
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrapbook Bio & Metadata Grid -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <!-- Main Quote Box -->
+                <div class="bg-wallLight border-2 border-offwhite/20 p-6 rounded-2xl relative shadow-sticker">
+                    <div class="absolute -top-3 left-6 bg-accentOrange text-black font-mono font-bold text-xs px-2 py-0.5 rounded border border-black">
+                        BIO STATEMENT
+                    </div>
+                    <p class="font-syne text-lg sm:text-xl text-offwhite leading-relaxed pt-2">
+                        “I'm a student who is interested in computers, programming, networking, and creating things on the web.”
+                    </p>
+                </div>
+
+                <!-- Metadata Sticker Badges with Hand-drawn arrows -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-sm pt-2">
+                    
+                    <div class="bg-wall border-2 border-neonGreen p-4 rounded-xl flex items-center gap-3 relative group hover:-translate-y-1 transition-transform">
+                        <div class="bg-neonGreen text-black p-3 rounded-lg border border-black font-bold text-lg">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-offwhite/60 block">ROLE / AGE</span>
+                            <span class="font-bold text-neonGreen">AGE → STUDENT</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-wall border-2 border-electricBlue p-4 rounded-xl flex items-center gap-3 relative group hover:-translate-y-1 transition-transform">
+                        <div class="bg-electricBlue text-white p-3 rounded-lg border border-black font-bold text-lg">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-offwhite/60 block">MAJOR</span>
+                            <span class="font-bold text-electricBlue">FIELD → TKJ</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-wall border-2 border-accentOrange p-4 rounded-xl flex items-center gap-3 relative group hover:-translate-y-1 transition-transform">
+                        <div class="bg-accentOrange text-black p-3 rounded-lg border border-black font-bold text-lg">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-offwhite/60 block">PASSION</span>
+                            <span class="font-bold text-accentOrange">INTEREST → TECH</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-wall border-2 border-violet p-4 rounded-xl flex items-center gap-3 relative group hover:-translate-y-1 transition-transform">
+                        <div class="bg-violet text-white p-3 rounded-lg border border-black font-bold text-lg">
+                            <i class="fa-solid fa-spinner animate-spin"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-offwhite/60 block">STATUS</span>
+                            <span class="font-bold text-violet">MODE → LEARNING</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Additional Handwritten Note -->
+                <div class="p-4 bg-offwhite/5 border border-dashed border-offwhite/20 rounded-xl flex items-center gap-3">
+                    <i class="fa-solid fa-quote-left text-neonGreen text-2xl"></i>
+                    <p class="font-hand text-xl text-offwhite/90">
+                        Always experimenting with Linux terminal commands, Cisco packet tracer, and responsive Tailwind layouts.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION - "MY WEAPONS" -->
+    <section id="skills" class="py-24 px-4 md:px-8 bg-wallLight/50 border-y-4 border-dashed border-offwhite/10 relative">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Section Title -->
+            <div class="text-center mb-16 space-y-2">
+                <span class="font-marker text-neonGreen text-sm tracking-widest">// TECH ARSENAL</span>
+                <h2 class="text-5xl sm:text-7xl font-anton text-offwhite uppercase">
+                    MY <span class="text-accentOrange">WEAPONS</span>
+                </h2>
+                <p class="font-mono text-xs text-offwhite/60">COLLECTION OF SKILL STICKERS & NETWORK PROTOCOLS</p>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Skill Card 01: HTML -->
+                <div class="bg-wall border-2 border-accentOrange p-5 rounded-2xl shadow-sticker hover:-rotate-1 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-html5 text-accentOrange text-2xl"></i>
+                            <span class="font-anton text-xl tracking-wide">HTML5</span>
+                        </div>
+                        <span class="font-mono text-xs bg-accentOrange/20 text-accentOrange border border-accentOrange px-2 py-0.5 rounded">90%</span>
+                    </div>
+                    <div class="font-mono text-xs text-accentOrange font-bold tracking-widest bg-black p-2 rounded border border-accentOrange/40">
+                        ██████████
+                    </div>
+                    <span class="font-hand text-sm text-offwhite/70 mt-2 block">Markup & Visual Structure</span>
+                </div>
+
+                <!-- Skill Card 02: CSS -->
+                <div class="bg-wall border-2 border-electricBlue p-5 rounded-2xl shadow-sticker hover:rotate-1 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-css3-alt text-electricBlue text-2xl"></i>
+                            <span class="font-anton text-xl tracking-wide">CSS / TAILWIND</span>
+                        </div>
+                        <span class="font-mono text-xs bg-electricBlue/20 text-electricBlue border border-electricBlue px-2 py-0.5 rounded">85%</span>
+                    </div>
+                    <div class="font-mono text-xs text-electricBlue font-bold tracking-widest bg-black p-2 rounded border border-electricBlue/40">
+                        █████████░
+                    </div>
+                    <span class="font-hand text-sm text-offwhite/70 mt-2 block">Styling, Flexbox & Animations</span>
+                </div>
+
+                <!-- Skill Card 03: JAVASCRIPT -->
+                <div class="bg-wall border-2 border-neonGreen p-5 rounded-2xl shadow-sticker hover:-rotate-1 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-square-js text-neonGreen text-2xl"></i>
+                            <span class="font-anton text-xl tracking-wide">JAVASCRIPT</span>
+                        </div>
+                        <span class="font-mono text-xs bg-neonGreen/20 text-neonGreen border border-neonGreen px-2 py-0.5 rounded">70%</span>
+                    </div>
+                    <div class="font-mono text-xs text-neonGreen font-bold tracking-widest bg-black p-2 rounded border border-neonGreen/40">
+                        ███████░░░
+                    </div>
+                    <span class="font-hand text-sm text-offwhite/70 mt-2 block">DOM Interactions & Logic</span>
+                </div>
+
+                <!-- Skill Card 04: C++ -->
+                <div class="bg-wall border-2 border-violet p-5 rounded-2xl shadow-sticker hover:rotate-1 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-code text-violet text-2xl"></i>
+                            <span class="font-anton text-xl tracking-wide">C++</span>
+                        </div>
+                        <span class="font-mono text-xs bg-violet/20 text-violet border border-violet px-2 py-0.5 rounded">60%</span>
+                    </div>
+                    <div class="font-mono text-xs text-violet font-bold tracking-widest bg-black p-2 rounded border border-violet/40">
+                        ██████░░░░
+                    </div>
+                    <span class="font-hand text-sm text-offwhite/70 mt-2 block">Algorithms & Memory Basics</span>
+                </div>
+
+                <!-- Skill Card 05: NETWORKING -->
+                <div class="bg-wall border-2 border-neonGreen p-5 rounded-2xl shadow-sticker hover:-rotate-1 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-network-wired text-neonGreen text-2xl"></i>
+                            <span class="font-anton text-xl tracking-wide">NETWORKING</span>
+                        </div>
+                        <span class="font-mono text-xs bg-neonGreen/20 text-neonGreen border border-neonGreen px-2 py-0.5 rounded">80%</span>
+                    </div>
+                    <div class="font-mono text-xs text-neonGreen font-bold tracking-widest bg-black p-2 rounded border border-neonGreen/40">
+                        ████████░░
+                    </div>
+                    <span class="font-hand text-sm text-offwhite/70 mt-2 block">Subnetting, Cisco & Mikrotik</span>
+                </div>
+
+                <!-- Skill Card 06: COMPUTER HARDWARE -->
+                <div class="bg-wall border-2 border-accentOrange p-5 rounded-2xl shadow-sticker hover:rotate-1 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-screwdriver-wrench text-accentOrange text-2xl"></i>
+                            <span class="font-anton text-xl tracking-wide">HARDWARE</span>
+                        </div>
+                        <span class="font-mono text-xs bg-accentOrange/20 text-accentOrange border border-accentOrange px-2 py-0.5 rounded">80%</span>
+                    </div>
+                    <div class="font-mono text-xs text-accentOrange font-bold tracking-widest bg-black p-2 rounded border border-accentOrange/40">
+                        ████████░░
+                    </div>
+                    <span class="font-hand text-sm text-offwhite/70 mt-2 block">PC Building & Diagnostics</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION - "STUFF I BUILT" -->
+    <section id="projects" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-4">
+            <div>
+                <span class="font-marker text-electricBlue text-sm tracking-widest">// PORTFOLIO SHOWCASE</span>
+                <h2 class="text-5xl sm:text-7xl font-anton text-offwhite uppercase">
+                    STUFF I <span class="text-neonGreen">BUILT</span>
+                </h2>
+            </div>
+            <div class="font-mono text-xs bg-wallLight text-neonGreen px-3 py-1 rounded border border-neonGreen shadow-sticker">
+                TOTAL PROJECTS: 04
+            </div>
+        </div>
+
+        <!-- Asymmetric Poster Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            
+            <!-- Project 01 Poster -->
+            <div class="bg-offwhite text-black p-4 rounded border-2 border-black shadow-sticker-lg -rotate-1 hover:rotate-0 transition-transform duration-300 relative group">
+                <!-- Duct Tape Corner -->
+                <div class="absolute -top-3 -right-3 w-20 h-6 masking-tape z-20 rotate-45"></div>
+                
+                <div class="relative bg-wall h-60 border-2 border-black overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" 
+                         alt="Network Topology Simulator" 
+                         class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-2 left-2 bg-neonGreen text-black font-mono font-bold text-[10px] px-2 py-0.5 border border-black">
+                        TKJ PROJECT
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-anton text-2xl uppercase tracking-wide">LAN Topology Mapper</h3>
+                        <span class="font-mono text-xs font-bold text-accentOrange">#01</span>
+                    </div>
+                    <p class="font-syne text-xs text-gray-800 leading-relaxed">
+                        Interactive web tool to visualize IP subnet allocations and router node hops for student lab testing.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+                        <span class="bg-black text-neonGreen px-2 py-0.5 rounded">HTML/CSS</span>
+                        <span class="bg-black text-electricBlue px-2 py-0.5 rounded">JAVASCRIPT</span>
+                        <span class="bg-black text-accentOrange px-2 py-0.5 rounded">CISCO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 02 Poster -->
+            <div class="bg-offwhite text-black p-4 rounded border-2 border-black shadow-sticker-lg rotate-2 hover:rotate-0 transition-transform duration-300 relative group">
+                <!-- Duct Tape Corner -->
+                <div class="absolute -top-3 -left-3 w-20 h-6 masking-tape z-20 -rotate-45"></div>
+
+                <div class="relative bg-wall h-60 border-2 border-black overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" 
+                         alt="Retro Y2K Terminal Portfolio" 
+                         class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-2 left-2 bg-electricBlue text-white font-mono font-bold text-[10px] px-2 py-0.5 border border-black">
+                        WEB APP
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-anton text-2xl uppercase tracking-wide">Cyber Terminal Interface</h3>
+                        <span class="font-mono text-xs font-bold text-electricBlue">#02</span>
+                    </div>
+                    <p class="font-syne text-xs text-gray-800 leading-relaxed">
+                        A retro hacker-inspired browser terminal supporting ping commands, ASCII art rendering, and dynamic themes.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+                        <span class="bg-black text-neonGreen px-2 py-0.5 rounded">JS DOM</span>
+                        <span class="bg-black text-electricBlue px-2 py-0.5 rounded">TAILWIND</span>
+                        <span class="bg-black text-violet px-2 py-0.5 rounded">Y2K UI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 03 Poster -->
+            <div class="bg-offwhite text-black p-4 rounded border-2 border-black shadow-sticker-lg rotate-1 hover:rotate-0 transition-transform duration-300 relative group">
+                <!-- Duct Tape Corner -->
+                <div class="absolute -bottom-3 -right-3 w-20 h-6 masking-tape z-20 -rotate-12"></div>
+
+                <div class="relative bg-wall h-60 border-2 border-black overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" 
+                         alt="Hardware Diagnostics Tool" 
+                         class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-2 left-2 bg-accentOrange text-black font-mono font-bold text-[10px] px-2 py-0.5 border border-black">
+                        HARDWARE LAB
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-anton text-2xl uppercase tracking-wide">PC Parts Diagnostic Guide</h3>
+                        <span class="font-mono text-xs font-bold text-neonGreen">#03</span>
+                    </div>
+                    <p class="font-syne text-xs text-gray-800 leading-relaxed">
+                        Educational web dashboard detailing computer hardware troubleshooting procedures for TKJ beginners.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+                        <span class="bg-black text-accentOrange px-2 py-0.5 rounded">HTML5</span>
+                        <span class="bg-black text-neonGreen px-2 py-0.5 rounded">CSS GRID</span>
+                        <span class="bg-black text-offwhite px-2 py-0.5 rounded">HARDWARE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 04 Poster -->
+            <div class="bg-offwhite text-black p-4 rounded border-2 border-black shadow-sticker-lg -rotate-2 hover:rotate-0 transition-transform duration-300 relative group">
+                <!-- Duct Tape Corner -->
+                <div class="absolute -top-3 -right-3 w-20 h-6 masking-tape z-20 rotate-12"></div>
+
+                <div class="relative bg-wall h-60 border-2 border-black overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" 
+                         alt="School Club Website" 
+                         class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-2 left-2 bg-violet text-white font-mono font-bold text-[10px] px-2 py-0.5 border border-black">
+                        COMMUNITY
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-anton text-2xl uppercase tracking-wide">TKJ Student Community Hub</h3>
+                        <span class="font-mono text-xs font-bold text-violet">#04</span>
+                    </div>
+                    <p class="font-syne text-xs text-gray-800 leading-relaxed">
+                        A collaborative landing page for student networking events, Linux installation guides, and code snippets.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+                        <span class="bg-black text-electricBlue px-2 py-0.5 rounded">RESPONSIVE</span>
+                        <span class="bg-black text-neonGreen px-2 py-0.5 rounded">TAILWIND</span>
+                        <span class="bg-black text-accentOrange px-2 py-0.5 rounded">C++ SNIPPETS</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TKJ SPECIAL SECTION - "MORE THAN JUST CODE" -->
+    <section id="tkj" class="py-24 px-4 md:px-8 bg-wallLight border-y-4 border-dashed border-neonGreen/30 relative overflow-hidden">
+        
+        <!-- Ambient Background Glow -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-neonGreen/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            
+            <div class="text-center mb-16">
+                <span class="font-marker text-accentOrange text-sm tracking-widest">// SPECIAL TKJ IDENTITY</span>
+                <h2 class="text-5xl sm:text-7xl font-anton text-offwhite uppercase">
+                    MORE THAN <span class="text-neonGreen">JUST CODE</span>
+                </h2>
+                <p class="font-mono text-xs text-offwhite/60">INTERACTIVE TKJ NETWORK MAP & TERMINAL SIMULATOR</p>
+            </div>
+
+            <!-- Network Topology Map Visual -->
+            <div class="bg-wall border-2 border-neonGreen p-6 md:p-8 rounded-3xl shadow-sticker-lg mb-12">
+                
+                <div class="flex justify-between items-center pb-6 border-b border-offwhite/10 font-mono text-xs">
+                    <span class="text-neonGreen font-bold flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 bg-neonGreen rounded-full animate-ping"></span>
+                        NETWORK STATUS: ONLINE (192.168.1.1)
+                    </span>
+                    <span class="text-offwhite/50 hidden sm:inline">TCP/IP SUITE v4</span>
+                </div>
+
+                <!-- Node Diagram -->
+                <div class="py-12 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center relative">
+                    
+                    <!-- Node 1: PC -->
+                    <div class="bg-wallLight border-2 border-electricBlue p-4 rounded-xl relative group hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-electricBlue/20 text-electricBlue border border-electricBlue rounded-full mx-auto flex items-center justify-center text-xl mb-3">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <span class="font-anton text-lg block">CLIENT PC</span>
+                        <span class="font-mono text-[10px] text-electricBlue">192.168.1.100</span>
+                    </div>
+
+                    <!-- Node 2: SWITCH -->
+                    <div class="bg-wallLight border-2 border-neonGreen p-4 rounded-xl relative group hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-neonGreen/20 text-neonGreen border border-neonGreen rounded-full mx-auto flex items-center justify-center text-xl mb-3">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <span class="font-anton text-lg block">SWITCH</span>
+                        <span class="font-mono text-[10px] text-neonGreen">LAYER 2 SWITCH</span>
+                    </div>
+
+                    <!-- Node 3: ROUTER -->
+                    <div class="bg-wallLight border-2 border-accentOrange p-4 rounded-xl relative group hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-accentOrange/20 text-accentOrange border border-accentOrange rounded-full mx-auto flex items-center justify-center text-xl mb-3">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <span class="font-anton text-lg block">ROUTER</span>
+                        <span class="font-mono text-[10px] text-accentOrange">192.168.1.1</span>
+                    </div>
+
+                    <!-- Node 4: SERVER -->
+                    <div class="bg-wallLight border-2 border-violet p-4 rounded-xl relative group hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 bg-violet/20 text-violet border border-violet rounded-full mx-auto flex items-center justify-center text-xl mb-3">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <span class="font-anton text-lg block">SERVER</span>
+                        <span class="font-mono text-[10px] text-violet">127.0.0.1 (LOCAL)</span>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Terminal Box -->
+                <div class="bg-black border-2 border-offwhite/20 rounded-xl p-4 font-mono text-xs text-neonGreen">
+                    <div class="flex items-center gap-2 pb-2 mb-3 border-b border-white/10 text-offwhite/50 text-[11px]">
+                        <span class="w-3 h-3 bg-red-500 rounded-full inline-block"></span>
+                        <span class="w-3 h-3 bg-yellow-500 rounded-full inline-block"></span>
+                        <span class="w-3 h-3 bg-green-500 rounded-full inline-block"></span>
+                        <span>abrizam@tkj-lab:~</span>
+                    </div>
+                    <div id="terminalLog" class="space-y-1 h-32 overflow-y-auto font-mono">
+                        <div>$ ping 127.0.0.1 -c 4</div>
+                        <div class="text-offwhite/70">64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.042 ms</div>
+                        <div class="text-offwhite/70">64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.038 ms</div>
+                        <div class="text-neonGreen font-bold">--- 127.0.0.1 ping statistics --- 0% packet loss</div>
+                    </div>
+                    <div class="mt-3 flex items-center gap-2 pt-2 border-t border-white/10">
+                        <span class="text-accentOrange font-bold">$</span>
+                        <input id="termInput" type="text" placeholder="Type 'ping', 'ifconfig', or 'help'..." 
+                               class="bg-transparent text-white focus:outline-none w-full font-mono">
+                        <button onclick="execTerminalCmd()" class="bg-neonGreen text-black font-bold px-3 py-1 rounded text-xs">
+                            EXECUTE
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LEARNING JOURNEY SECTION - "THE GRIND" -->
+    <section id="journey" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative">
+        
+        <div class="text-center mb-16">
+            <span class="font-marker text-violet text-sm tracking-widest">// PROGRESS TIMELINE</span>
+            <h2 class="text-5xl sm:text-7xl font-anton text-offwhite uppercase">
+                THE <span class="text-electricBlue">GRIND</span>
+            </h2>
+            <div class="inline-block bg-neonGreen text-black font-mono font-bold text-xs px-3 py-1 rounded border border-black shadow-sticker mt-2">
+                LEVEL UP ↑
+            </div>
+        </div>
+
+        <!-- Timeline Wall -->
+        <div class="relative border-l-4 border-dashed border-neonGreen/40 ml-4 md:ml-32 space-y-12">
+            
+            <!-- Step 01 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute -left-[19px] top-0 w-8 h-8 bg-neonGreen text-black font-anton flex items-center justify-center rounded-full border-2 border-black font-bold shadow-sticker">
+                    01
+                </div>
+                <div class="bg-wallLight border-2 border-neonGreen p-5 rounded-2xl shadow-sticker max-w-2xl">
+                    <span class="font-mono text-xs text-neonGreen font-bold">// STEP 01</span>
+                    <h3 class="font-anton text-2xl text-offwhite uppercase">COMPUTER EXPLORATION</h3>
+                    <p class="font-syne text-sm text-offwhite/70 mt-1">
+                        Started dissecting PC hardware, understanding OS installations, and learning how basic hardware components interact.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute -left-[19px] top-0 w-8 h-8 bg-electricBlue text-white font-anton flex items-center justify-center rounded-full border-2 border-black font-bold shadow-sticker">
+                    02
+                </div>
+                <div class="bg-wallLight border-2 border-electricBlue p-5 rounded-2xl shadow-sticker max-w-2xl">
+                    <span class="font-mono text-xs text-electricBlue font-bold">// STEP 02</span>
+                    <h3 class="font-anton text-2xl text-offwhite uppercase">HTML + CSS FOUNDATIONS</h3>
+                    <p class="font-syne text-sm text-offwhite/70 mt-1">
+                        Discovered the world of web development. Built first static web layouts, styling buttons, and crafting landing pages.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute -left-[19px] top-0 w-8 h-8 bg-accentOrange text-black font-anton flex items-center justify-center rounded-full border-2 border-black font-bold shadow-sticker">
+                    03
+                </div>
+                <div class="bg-wallLight border-2 border-accentOrange p-5 rounded-2xl shadow-sticker max-w-2xl">
+                    <span class="font-mono text-xs text-accentOrange font-bold">// STEP 03</span>
+                    <h3 class="font-anton text-2xl text-offwhite uppercase">JAVASCRIPT LOGIC</h3>
+                    <p class="font-syne text-sm text-offwhite/70 mt-1">
+                        Dove into DOM manipulation, interactive events, functions, API calls, and logic handling on the frontend.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute -left-[19px] top-0 w-8 h-8 bg-violet text-white font-anton flex items-center justify-center rounded-full border-2 border-black font-bold shadow-sticker">
+                    04
+                </div>
+                <div class="bg-wallLight border-2 border-violet p-5 rounded-2xl shadow-sticker max-w-2xl">
+                    <span class="font-mono text-xs text-violet font-bold">// STEP 04</span>
+                    <h3 class="font-anton text-2xl text-offwhite uppercase">TKJ NETWORKING DEEP DIVE</h3>
+                    <p class="font-syne text-sm text-offwhite/70 mt-1">
+                        Joined TKJ major. Learning TCP/IP layers, routing protocols, subnetting calculations, and Mikrotik/Cisco configuration.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 05 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute -left-[19px] top-0 w-8 h-8 bg-offwhite text-black font-anton flex items-center justify-center rounded-full border-2 border-black font-bold shadow-sticker">
+                    05
+                </div>
+                <div class="bg-wallLight border-2 border-offwhite p-5 rounded-2xl shadow-sticker max-w-2xl">
+                    <span class="font-mono text-xs text-offwhite font-bold">// STEP 05</span>
+                    <h3 class="font-anton text-2xl text-offwhite uppercase">NEXT LEVEL DEVELOPMENT</h3>
+                    <p class="font-syne text-sm text-offwhite/70 mt-1">
+                        Continuously building full-fledged web applications, bridging web apps with local server environments.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BIG TYPOGRAPHY SECTION -->
+    <section class="py-16 bg-neonGreen text-black overflow-hidden border-y-4 border-black select-none">
+        <div class="whitespace-nowrap font-anton text-6xl sm:text-8xl md:text-9xl uppercase tracking-tighter flex gap-8 animate-pulse">
+            <span>LEARN.</span>
+            <span class="text-white drop-shadow-[4px_4px_0_#000]">BUILD.</span>
+            <span>BREAK.</span>
+            <span class="text-electricBlue">FIX.</span>
+            <span>REPEAT.</span>
+            <span>LEARN.</span>
+            <span class="text-white drop-shadow-[4px_4px_0_#000]">BUILD.</span>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION - "WANT TO BUILD SOMETHING?" -->
+    <section id="contact" class="py-24 px-4 md:px-8 max-w-5xl mx-auto text-center relative">
+        
+        <div class="bg-wallLight border-2 border-offwhite/20 p-8 sm:p-14 rounded-3xl shadow-sticker-lg relative overflow-hidden">
+            
+            <div class="space-y-4 relative z-10">
+                <span class="font-marker text-neonGreen text-sm tracking-widest">// GET IN TOUCH</span>
+                <h2 class="text-5xl sm:text-7xl font-anton text-offwhite uppercase">
+                    WANT TO <span class="text-accentOrange">BUILD</span> SOMETHING?
+                </h2>
+                <p class="font-mono text-xl text-electricBlue font-bold">LET'S CONNECT.</p>
+                
+                <p class="font-syne text-sm text-offwhite/70 max-w-md mx-auto pt-2">
+                    Open for web projects, networking lab collaborations, or tech discussions. Drop a message!
+                </p>
+
+                <!-- Sticker Connect Buttons -->
+                <div class="pt-8 flex flex-wrap justify-center gap-4">
+                    
+                    <!-- GitHub Button -->
+                    <a href="https://github.com" target="_blank" rel="noopener" 
+                       class="sticker-btn bg-black text-white font-mono font-bold px-6 py-3 rounded-xl border-2 border-white shadow-sticker flex items-center gap-2 hover:bg-neonGreen hover:text-black">
+                        <i class="fa-brands fa-github text-lg"></i>
+                        <span>GITHUB</span>
+                    </a>
+
+                    <!-- LinkedIn Button -->
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" 
+                       class="sticker-btn bg-electricBlue text-white font-mono font-bold px-6 py-3 rounded-xl border-2 border-black shadow-sticker flex items-center gap-2 hover:bg-accentOrange">
+                        <i class="fa-brands fa-linkedin text-lg"></i>
+                        <span>LINKEDIN</span>
+                    </a>
+
+                    <!-- Email Button -->
+                    <a href="mailto:abrizam@example.com" 
+                       class="sticker-btn bg-neonGreen text-black font-mono font-bold px-6 py-3 rounded-xl border-2 border-black shadow-sticker flex items-center gap-2 hover:bg-white">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>WHATSAAP</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Graffiti Sticker Overlay -->
+            <div class="absolute -bottom-6 -left-6 font-marker text-4xl text-neonGreen/20 rotate-12 pointer-events-none select-none">
+                #PING_ME
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t-2 border-offwhite/10 text-center font-mono text-xs text-offwhite/60 space-y-4">
+        
+        <!-- Signature Wall Tag -->
+        <div class="font-anton text-5xl text-offwhite tracking-wider hover:text-neonGreen transition-colors cursor-default">
+            ABRIZAM.
+        </div>
+
+        <p class="font-hand text-lg text-accentOrange">made with code & caffeine</p>
+
+        <p>© 2026 Mohammad Abrizam Laiz — TKJ Web Developer</p>
+    </footer>
+
+    <script>
+        /* Mobile Menu Toggle Function */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        /* Interactive Terminal Tool */
+        function execTerminalCmd() {
+            const input = document.getElementById('termInput');
+            const log = document.getElementById('terminalLog');
+            const cmd = input.value.trim().toLowerCase();
+
+            if (!cmd) return;
+
+            const userLine = document.createElement('div');
+            userLine.className = 'text-accentOrange font-bold';
+            userLine.textContent = `$ ${input.value}`;
+            log.appendChild(userLine);
+
+            const respLine = document.createElement('div');
+            respLine.className = 'text-offwhite/80';
+
+            if (cmd === 'ping' || cmd.startsWith('ping ')) {
+                respLine.textContent = '64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.035 ms [SUCCESS]';
+            } else if (cmd === 'ifconfig' || cmd === 'ipconfig') {
+                respLine.textContent = 'eth0: inet 192.168.1.100 netmask 255.255.255.0 broadcast 192.168.1.255';
+            } else if (cmd === 'help') {
+                respLine.textContent = 'Available commands: ping, ifconfig, clear, whoami, tkj';
+            } else if (cmd === 'whoami') {
+                respLine.textContent = 'Mohammad Abrizam Laiz - TKJ Student / Web Dev';
+            } else if (cmd === 'clear') {
+                log.innerHTML = '';
+                input.value = '';
+                return;
+            } else {
+                respLine.textContent = `Command not recognized: '${cmd}'. Type 'help' for options.`;
+            }
+
+            log.appendChild(respLine);
+            log.scrollTop = log.scrollHeight;
+            input.value = '';
+        }
+
+        // Trigger Terminal command on Enter key
+        document.getElementById('termInput')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                execTerminalCmd();
+            }
+        });
+
+        /* Spray Paint Canvas Implementation */
+        let isSpraying = false;
+        let sprayActive = false;
+        const canvas = document.getElementById('sprayCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function toggleSprayMode() {
+            sprayActive = !sprayActive;
+            const btn = document.getElementById('sprayToggleBtn');
+            const text = document.getElementById('sprayBtnText');
+            
+            if (sprayActive) {
+                canvas.classList.add('active');
+                btn.classList.replace('bg-accentOrange', 'bg-neonGreen');
+                if (text) text.textContent = 'SPRAYING (CLICK & DRAG)';
+            } else {
+                canvas.classList.remove('active');
+                btn.classList.replace('bg-neonGreen', 'bg-accentOrange');
+                if (text) text.textContent = 'SPRAY GRAFFITI';
+            }
+        }
+
+        function sprayParticles(x, y) {
+            const density = 30;
+            const radius = 18;
+            ctx.fillStyle = '#00ff66';
+
+            for (let i = 0; i < density; i++) {
+                const offsetX = (Math.random() - 0.5) * radius * 2;
+                const offsetY = (Math.random() - 0.5) * radius * 2;
+                if (offsetX * offsetX + offsetY * offsetY <= radius * radius) {
+                    ctx.fillRect(x + offsetX, y + offsetY, 2, 2);
+                }
+            }
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (!sprayActive) return;
+            isSpraying = true;
+            sprayParticles(e.clientX, e.clientY);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isSpraying && sprayActive) {
+                sprayParticles(e.clientX, e.clientY);
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isSpraying = false;
+        });
+
+        /* Touch support for Spray tool */
+        canvas.addEventListener('touchstart', (e) => {
+            if (!sprayActive) return;
+            isSpraying = true;
+            const touch = e.touches[0];
+            sprayParticles(touch.clientX, touch.clientY);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (isSpraying && sprayActive) {
+                const touch = e.touches[0];
+                sprayParticles(touch.clientX, touch.clientY);
+            }
+        });
+
+        window.addEventListener('touchend', () => {
+            isSpraying = false;
+        });
+    </script>
+</body>
+</html>
